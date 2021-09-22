@@ -25,8 +25,8 @@ class RandomUserData():
         """The method returns random data of a male/female's
         full name and date of birth. 
         Example: dic -> 
-        {'surname': , 'fistname': , 'patranymic': , 'date of birth':,
-        'username':, 'password':}
+        {'gender': , 'surname': , 'fistname': , 'patranymic': , 'date of birth': ,
+        'username': , 'password':}
         """
         random_date = self._formation_date(self.start_date, self.stop_date)
         gender = random.choice(['male', 'female'])
@@ -41,6 +41,7 @@ class RandomUserData():
         username = DataAuth().username(surname)
         password = DataAuth().password(firstname)
         return {
+            'gender': gender,
             'surname': surname,
             'firstname': firstname,
             'patranymic': patranymic,
