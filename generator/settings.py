@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # my app
     'users_generator.apps.UsersGeneratorConfig',
+    'bootstrap5',
     # other
     'django.contrib.admin',
     'django.contrib.auth',

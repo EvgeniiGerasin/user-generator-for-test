@@ -1,0 +1,18 @@
+{% extends 'users_generator/base.html' %}
+
+{% block content %}
+  <div class="container-fluid p-3 bg-dark text-white"><h1>Генератор пользователей</h1></div>
+  <div class="container pt-5">
+  <p>{
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;'surname': '{{user.surname}}',<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;'firstname': '{{user.firstname}}',<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;'patranymic': '{{user.patranymic}}',<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;'date_birth': '{{user.date_birth}}',<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;'username': '{{user.username}}',<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;'password': '{{user.password}}',<br>
+    }
+  </p>
+  </div>
+  </div>
+
+{% endblock content %}
