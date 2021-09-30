@@ -27,13 +27,19 @@ def castom_user(request):
         r.gender = gender
         user = r.castom_random_user()
         context = {
-            'user': user
+            'user': user,
+            'data_from': data_from,
+            'data_to': data_to,
+            'gender': gender,
         }
         return render(request, 'users_generator/castom_user.html', context)
     else:
 
         user = r.full_random_user()
         context = {
-            'user': user
+            'user': user,
+            'data_from': '1970-01-01',
+            'data_to': '2009-01-01',
+            'gender': 'random',
         }
         return render(request, 'users_generator/castom_user.html', context)
