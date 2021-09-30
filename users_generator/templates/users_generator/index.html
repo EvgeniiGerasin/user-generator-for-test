@@ -1,19 +1,31 @@
 {% extends 'users_generator/base.html' %}
 
 {% block content %}
-  <div class="container-fluid p-3 bg-dark text-white"><h1>Генератор пользователей</h1></div>
-  <div class="container pt-5">
-  <p>{
-    <br>&nbsp;&nbsp;&nbsp;&nbsp;'gender': '{{user.gender}}',<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;'surname': '{{user.surname}}',<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;'firstname': '{{user.firstname}}',<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;'patranymic': '{{user.patranymic}}',<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;'date_birth': '{{user.date_birth}}',<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;'username': '{{user.username}}',<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;'password': '{{user.password}}',<br>
-    }
-  </p>
+  <div class="container-fluid mt-2 p-4 bg-dark text-white">
+    <h1>Creator</h1>
   </div>
+  <div class="container pt-5">
+    <div class="row">
+      <div class="col">
+        <p>{
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;'gender': '{{user.gender}}',<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;'surname': '{{user.surname}}',<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;'firstname': '{{user.firstname}}',<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;'patranymic': '{{user.patranymic}}',<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;'date_birth': '{{user.date_birth}}',<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;'username': '{{user.username}}',<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;'password': '{{user.password}}',<br>
+      }
+        </p>
+      </div>
+      <div class="col">
+        <div class="m-3 pt-4">
+          <div class="alert alert-light">
+            <strong>Warning!</strong> Не используйте сгенерированные пароли для реальных пользователей
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 {% endblock content %}

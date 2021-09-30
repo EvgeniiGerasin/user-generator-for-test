@@ -1,0 +1,45 @@
+{% extends 'users_generator/base.html' %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="bday">Дата рождения с</label>
+            <input type="date" id="data_from" name="data_from" value="1970-01-01"></input>
+            <label for="bday">по</label>
+            <input type="date" id="data_to" name="data_to" value="2021-01-01"></input>
+        </div>
+        <div>
+            <input type="radio" id="contactChoice1" name="gender" value="male">
+            <label for="contactChoice1">male</label>
+            <input type="radio" id="contactChoice2" name="gender" value="female">
+            <label for="contactChoice2">female</label>
+            <input type="radio" id="contactChoice3" name="gender" checked value="random">
+            <label for="contactChoice3">random</label>
+        </div>
+        <button type="submit">Create</button>
+    </form>
+
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col">
+                <p>{
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;'gender': '{{user.gender}}',<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;'surname': '{{user.surname}}',<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;'firstname': '{{user.firstname}}',<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;'patranymic': '{{user.patranymic}}',<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;'date_birth': '{{user.date_birth}}',<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;'username': '{{user.username}}',<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;'password': '{{user.password}}',<br>
+      }
+        </p>
+            </div>
+            <div class="col">
+                <div class="m-3 pt-4">
+                    <div class="alert alert-light">
+                        <strong>Warning!</strong> Не используйте сгенерированные пароли для реальных пользователей
+          </div>
+                </div>
+            </div>
+        </div>
+    {% endblock content %}
