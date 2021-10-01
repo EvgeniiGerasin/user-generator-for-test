@@ -3,6 +3,7 @@ from users_generator.randomengine.loginandpassword import DataAuth
 
 import random
 import time
+import csv
 
 
 class RandomUserData():
@@ -104,3 +105,26 @@ class RandomUserData():
             0, date_stop_sec - date_start_sec
         ) + date_start_sec
         return time.strftime('%d.%m.%Y', time.localtime(random_data_sec))
+
+    def generate_csv_users(self, number):
+
+        with open('users_generator/randomengine/csv/data_users.csv', 'w') as f:
+            fields_names = [
+                'gender', 'surname', 'firstname', 'patranymic',
+                'date_birth', 'username', 'password',
+            ]
+            writer = csv.DictWriter(f, fieldnames=fields_names)
+            writer.writeheader()
+            for _ in range(0, number):
+                data_one_user = self.castom_random_user()
+                writer.writerow(
+                    {
+                        'gender': data_one_user['gender'],
+                        'surname': data_one_user['surname'],
+                        'firstname': data_one_user['firstname'],
+                        'patranymic': data_one_user['patranymic'],
+                        'date_birth': data_one_user['date_birth'],
+                        'username': data_one_user['username'],
+                        'password': data_one_user['password'],
+                    }
+                )
