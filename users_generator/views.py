@@ -22,6 +22,8 @@ def castom_user(request):
         data_from = request.POST.get('data_from')
         data_to = request.POST.get('data_to')
         gender = request.POST.get('gender')
+        number = int(request.POST.get('number'))
+        csv = bool(request.POST.get('type'))
         r.start_date = data_from
         r.stop_date = data_to
         r.gender = gender
