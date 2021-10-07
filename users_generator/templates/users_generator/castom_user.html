@@ -1,50 +1,83 @@
 {% extends 'users_generator/base.html' %}
 
+{% block title %}Castom users generator{% endblock title %}
+
 {% block content %}
   <form method="POST">
     {% csrf_token %}
-    <div>
-      <label for="data_from">Дата рождения с</label>
-      <input type="date" id="data_from" name="data_from" value={{ data_from }}></input>
-      <label for="data_to">по</label>
-      <input type="date" id="data_to" name="data_to" value={{ data_to }}></input>
-    </div>
-    <div>
-      <input type="radio" id="contactChoice1" name="gender" {% if gender == 'male'%} checked {% endif %} value="male">
-      <label for="contactChoice1">male</label>
-      <input type="radio" id="contactChoice2" name="gender" {% if gender == 'female'%} checked {% endif %} value="female">
-      <label for="contactChoice2">female</label>
-      <input type="radio" id="contactChoice3" name="gender" {% if gender == 'random'%} checked {% endif %} value="random">
-      <label for="contactChoice3">random</label>
-    </div>
-    <div>
-      <label for="number">Количество записей (только для CSV) </label>
-      <input type="number" value="1" min="1" max="100000" id="number" name="number"></input>
-    </div>
-    <button type="submit">Create</button>
-    <button type="submit" name="type" value="csv">Create and download CSV</button>
-  </form>
+    <div class="container col-xl-10 col-xxl-7 px-4 py-5">
+      <div class="row align-items-center g-lg-5 py-5">
+        <div class="col-lg-7 text-center text-lg-start">
+          <h5 class="display-6 fw-bold lh-1 mb-3">Параметры</h5>
 
-  <div class="container pt-5">
-    <div class="row">
-      <div class="col">
-        <p>{
-      <br>&nbsp;&nbsp;&nbsp;&nbsp;'gender': '{{user.gender}}',<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;'surname': '{{user.surname}}',<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;'firstname': '{{user.firstname}}',<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;'patranymic': '{{user.patranymic}}',<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;'date_birth': '{{user.date_birth}}',<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;'username': '{{user.username}}',<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;'password': '{{user.password}}',<br>
-      }
-        </p>
-      </div>
-      <div class="col">
-        <div class="m-3 pt-4">
-          <div class="alert alert-light">
-            <strong>Warning!</strong> Не используйте сгенерированные пароли для реальных пользователей
+          <div class="mx-5">
+            <hr class="my-4">
+            <h4 class="mb-3">Дата рождения</h4>
+            <div class="col-sm-4">
+              <label for="date_from" class="form-label">начиная с</label>
+              <input type="date" class="form-control" id="date_from" name="date_from" value="{{ date_from }}"></input>
+            </div>
+            <div class="col-sm-4">
+              <label for="date_to" class="form-label">заканчивая </label>
+              <input type="date" class="form-control" id="date_to" name="date_to" value="{{ date_to }}">
+            </div>
+            <hr class="my-4">
+            <h4 class="mb-3">Пол</h4>
+            <div class="my-3">
+              <div class="form-check">
+                <input id="gender1" name="gender" type="radio" class="form-check-input" {% if gender == 'male'%} checked {% endif %} value="male">
+                <label class="form-check-label" for="credit">мужской</label>
+              </div>
+              <div class="form-check">
+                <input id="gender2" name="gender" type="radio" class="form-check-input" {% if gender == 'female'%} checked {% endif %} value="female">
+                <label class="form-check-label" for="debit">женский</label>
+              </div>
+              <div class="form-check">
+                <input id="gender3" name="gender" type="radio" class="form-check-input" {% if gender == 'random'%} checked {% endif %} value="random">
+                <label class="form-check-label" for="paypal">случайный</label>
+              </div>
+            </div>
+            <hr class="my-4">
+            <h4 class="mb-3">Количество записей (только для CSV)</h4>
+            <div class="my-3">
+              <div class="col-sm-4">
+                <input type="number" class="form-control" value="1" min="1" max="100000" id="number" name="number"></input>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-10 mx-auto col-lg-5">
+          <div class="p-4 p-md-5 border rounded-3 bg-light">
+            <div class="form-floating mb-3">
+              <div class="col p-4">
+                <p>{
+              <br>&nbsp;&nbsp;&nbsp;&nbsp;'gender': '{{user.gender}}',<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;'surname': '{{user.surname}}',<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;'firstname': '{{user.firstname}}',<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;'patranymic': '{{user.patranymic}}',<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;'date_birth': '{{user.date_birth}}',<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;'username': '{{user.username}}',<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;'password': '{{user.password}}',<br>
+              }
+                </p>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" name="type" value="csv" id="button_csv" class="btn btn-success">Create and download CSV</button>
+            <hr class="my-4">
+            <div class="position top-50 start-50">
+              <small class="text-muted">Перейти в <a href="{% url 'users_generator:castom_user' %}">настройки генератора</a>
+              </small>
+              <p>
+                <small class="text-muted">
+                  <a href="#">Документация API</a>
+                </small>
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  {% endblock content %}
+  </form>
+
+{% endblock content %}
