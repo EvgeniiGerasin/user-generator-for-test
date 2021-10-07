@@ -25,19 +25,19 @@ def castom_user(request):
 
     if request.method == 'POST':
 
-        data_from = request.POST.get('data_from')
-        data_to = request.POST.get('data_to')
+        date_from = request.POST.get('date_from')
+        date_to = request.POST.get('date_to')
         gender = request.POST.get('gender')
         number = int(request.POST.get('number'))
         csv = bool(request.POST.get('type'))
-        r.start_date = data_from
-        r.stop_date = data_to
+        r.start_date = date_from
+        r.stop_date = date_to
         r.gender = gender
         user = r.castom_random_user()
         context = {
             'user': user,
-            'data_from': data_from,
-            'data_to': data_to,
+            'date_from': date_from,
+            'date_to': date_to,
             'gender': gender,
         }
         if csv:
@@ -52,8 +52,8 @@ def castom_user(request):
         user = r.full_random_user()
         context = {
             'user': user,
-            'data_from': '1970-01-01',
-            'data_to': '2009-01-01',
+            'date_from': '1970-01-01',
+            'date_to': '2009-01-01',
             'gender': 'random',
         }
         return render(request, 'users_generator/castom_user.html', context)
